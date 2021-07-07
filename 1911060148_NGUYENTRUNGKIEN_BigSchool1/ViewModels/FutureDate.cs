@@ -13,7 +13,9 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.ViewModels
         {
             DateTime dateTime;
             var isValid = DateTime.TryParseExact(Convert.ToString(value), "dd/M/yyyy",
-                CultureInfo.CurrentCulture, DateTimeStyles.None, out dateTime);
+                CultureInfo.CurrentCulture, 
+                DateTimeStyles.None, 
+                out dateTime);
 
             return (isValid && dateTime > DateTime.Now);
       }

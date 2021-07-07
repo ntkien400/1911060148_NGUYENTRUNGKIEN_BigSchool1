@@ -22,7 +22,7 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.ViewModels
         public IEnumerable<Category> Categories { get; set; }
         public DateTime GetDateTime()
         {
-            return DateTime.Parse(string.Format("{0} {1}", Time, Date));
+            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
     }
 }
