@@ -10,27 +10,26 @@ using System.Web.Http;
 
 namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
 {
-    [Authorize]
-    public class AttendancesController : ApiController
+    public class FollowingsController : ApiController
     {
-        private ApplicationDbContext _dbContext;
+        private readonly  ApplicationDbContext _dbContext;
 
-        public AttendancesController()
+        public FollowingsController()
         {
             _dbContext = new ApplicationDbContext();
         }
         [HttpPost]
-        public IHttpActionResult Attend(AttendanceDto attendanceDto)
+        public IHttpActionResult Follow(FollowingDto followingDto)
         {
             var userId = User.Identity.GetUserId();
-            if (_dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == attendanceDto.CourseId))
-                return BadRequest("The Attendance already exists!");
-            var attendance = new Attendance
+            if (_dbContext.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == followingDto.FolloweeId))
+                return BadRequest("Following already exists!");
+            var following = new Following
             {
-                CourseId = attendanceDto.CourseId,
-                AttendeeId = userId
+                FollowerId = userId,
+                FolloweeId = followingDto.FolloweeId
             };
-            _dbContext.Attendances.Add(attendance);
+            _dbContext.Followings.Add(following);
             _dbContext.SaveChanges();
 
             return Ok();
