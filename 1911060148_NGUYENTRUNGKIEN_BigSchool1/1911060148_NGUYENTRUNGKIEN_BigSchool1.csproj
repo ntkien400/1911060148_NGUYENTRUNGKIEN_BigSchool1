@@ -204,13 +204,9 @@
     <Compile Include="Migrations\202107061116341_AddNameColumnToApplicationUser.Designer.cs">
       <DependentUpon>202107061116341_AddNameColumnToApplicationUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107061227012_AddAttendance.cs" />
-    <Compile Include="Migrations\202107061227012_AddAttendance.Designer.cs">
-      <DependentUpon>202107061227012_AddAttendance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107070644401_AddFollowingsTable.cs" />
-    <Compile Include="Migrations\202107070644401_AddFollowingsTable.Designer.cs">
-      <DependentUpon>202107070644401_AddFollowingsTable.cs</DependentUpon>
+    <Compile Include="Migrations\202107070918165_ChangeAttendance.cs" />
+    <Compile Include="Migrations\202107070918165_ChangeAttendance.Designer.cs">
+      <DependentUpon>202107070918165_ChangeAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -313,11 +309,8 @@
     <EmbeddedResource Include="Migrations\202107061116341_AddNameColumnToApplicationUser.resx">
       <DependentUpon>202107061116341_AddNameColumnToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107061227012_AddAttendance.resx">
-      <DependentUpon>202107061227012_AddAttendance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107070644401_AddFollowingsTable.resx">
-      <DependentUpon>202107070644401_AddFollowingsTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107070918165_ChangeAttendance.resx">
+      <DependentUpon>202107070918165_ChangeAttendance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

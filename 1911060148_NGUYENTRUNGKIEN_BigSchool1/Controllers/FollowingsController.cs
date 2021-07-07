@@ -26,8 +26,8 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
                 return BadRequest("Following already exists!");
             var following = new Following
             {
-                FollowerId = userId,
-                FolloweeId = followingDto.FolloweeId
+                FolloweeId = followingDto.FolloweeId,
+                FollowerId = userId
             };
             _dbContext.Followings.Add(following);
             _dbContext.SaveChanges();
