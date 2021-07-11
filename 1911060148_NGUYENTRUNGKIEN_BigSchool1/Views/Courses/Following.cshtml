@@ -1,6 +1,8 @@
-﻿@model _1911060148_NGUYENTRUNGKIEN_BigSchool1.ViewModels.CoursesViewModel
+﻿@model _1911060148_NGUYENTRUNGKIEN_BigSchool1.ViewModels.FollowingsViewModel
+@using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @*<div class="row">
@@ -13,34 +15,18 @@
             }
     </ul>
 </div>*@
+<h2>Following</h2>
+
 <ul class="course">
-    @foreach (var course in Model.UpcommingCourses)
+    @foreach (var lecturers in Model.FollowingLecturers )
             {
                 <li>
-                    <div class="date">
-                        <div class="month">
-                            @course.DateTime.ToString("MM")
-                        </div>
-                        <div class="day">
-                            @course.DateTime.ToString("dd")
-                        </div>
-                    </div>
                     <div class="details">
                         <span class="lecturer">
-                            @course.Lecturer.Name
-                            @if (Model.ShowAction)
-                            {
-                                <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow?</button>
-                            }
-                        </span>
-                        <span class="category">
-                            @course.Category.Name
-                        </span>
-                        @if (Model.ShowAction)
-                        {
-                            <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
-                        }
+                            @lecturers.Name
+                        <</span>
                     </div>
+                    <a href="#" data-followee-id="@lecturers.Id" data-follower-id="@User.Identity.GetUserId()" class="js-unfollow">Unfollow</a>
                 </li>
             }
 </ul>
@@ -48,8 +34,12 @@
 {
     <script>
         $(document).ready(function () {
-            $(".js-toggle-attendance").click(function (e) {
-                var button = $(e.target);
+            $(".js-unfollow").click(function () {
+                var link = $(this);
+                bootbox.confirm("Bạn muốn hủy theo dõi?", function () {
+                    var followeeId = link.attr("data-followee-id");
+                    var followerId = link.attr("data-follower-id");
+                })
                 $.post("/api/attendances", { courseId: button.attr("data-course-id") })
                     .done(function () {
                         button
