@@ -23,9 +23,49 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
         {
             var viewModel = new CourseViewModel
             {
-                Categories = _dbContext.Categories.ToList()
+                Categories = _dbContext.Categories.ToList(),
+                Heading = "Thêm khóa học"
             };
             return View(viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerId == userId);
+
+            var viewModel = new CourseViewModel
+            {
+                Categories = _dbContext.Categories.ToList(),
+                Date = course.DateTime.ToString("dd/M/yyyy"),
+                Time = course.DateTime.ToString("HH:mm"),
+                Category = course.CategoryId,
+                Place = course.Place,
+                Heading = "Chỉnh sửa khóa học",
+                Id = course.Id
+            };
+            return View("Create", viewModel);
+        }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(CourseViewModel viewModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                viewModel.Categories = _dbContext.Categories.ToList();
+                return View("Create", viewModel);
+            }
+            var userId = User.Identity.GetUserId();
+            var course = _dbContext.Courses.Single(c => c.Id == viewModel.Id && c.LecturerId == userId);
+
+            course.Place = viewModel.Place;
+            course.DateTime = viewModel.GetDateTime();
+            course.CategoryId = viewModel.Category;
+
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
         [Authorize]
         [HttpPost]
@@ -71,8 +111,8 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
         {
             var userId = User.Identity.GetUserId();
             var lecturers = _dbContext.Followings
-                .Where(a => a.FolloweeId == userId)
-                .Select(a => a.Follower)
+                .Where(a => a.FollowerId == userId)
+                .Select(a => a.Followee)
                 .ToList();
             var viewModel = new FollowingsViewModel
             {
@@ -92,21 +132,6 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
                 .ToList();
             return View(courses);
         }
-        [Authorize]
-        public ActionResult Edit(int id)
-        {
-            var userId = User.Identity.GetUserId();
-            var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerId == userId);
-
-            var viewModel = new CourseViewModel
-            {
-                Categories = _dbContext.Categories.ToList(),
-                Date = course.DateTime.ToString("dd/M/yyyy"),
-                Time = course.DateTime.ToString("HH:mm"),
-                Category = course.CategoryId,
-                Place = course.Place
-            };
-            return View("Create", viewModel);
-        }
+       
     }
 }

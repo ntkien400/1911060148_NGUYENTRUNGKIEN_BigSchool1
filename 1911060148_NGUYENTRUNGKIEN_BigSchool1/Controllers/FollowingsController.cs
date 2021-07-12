@@ -34,5 +34,17 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
 
             return Ok();
         }
+        [HttpDelete]
+        public IHttpActionResult DeleteFollowing(string id)
+        {
+            var userId = User.Identity.GetUserId();
+            var following = _dbContext.Followings.SingleOrDefault(a => a.FollowerId == userId && a.FolloweeId == id);
+            if (following == null)
+                return NotFound();
+            _dbContext.Followings.Remove(following);
+            _dbContext.SaveChanges();
+
+            return Ok();
+        }
     }
 }
