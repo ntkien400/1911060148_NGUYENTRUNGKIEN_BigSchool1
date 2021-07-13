@@ -30,23 +30,47 @@ textarea {
     position: relative;
     margin-bottom: 30px;
 }
-    .course > li .date {
-        text-align: center;
-        background-color: #6d0aa0;
-        color: white;
-        width: 60px;
-        border-radius: 8px;
-    }
+.course > li .date {
+    text-align: center;
+    background-color: #6d0aa0;
+    color: white;
+    width: 60px;
+    border-radius: 8px;
+}
 .course > li .details{
     position: absolute;
     top: 0px;
     left: 70px;
 }
 .course > li .action{
-    display: none;
+    display: normal;
     left: 70px;
     position: absolute;
 }
 .course > li:hover .action{
     display:block;
+}
+.course > li .date1 {
+    text-align: center;
+    background-color: #6d0aa0;
+    color: white;
+    width: 60px;
+    border-radius: 8px;
+   opacity:0.2;
+}
+
+.course > li .details1 {
+    position: absolute;
+    top: 0px;
+    left: 70px;
+    opacity:0.2;
+}
+.course > li .action1 {
+    display: normal;
+    left: 70px;
+    position: absolute;
+}
+
+.course > li:hover .action1 {
+    display: block;
 }

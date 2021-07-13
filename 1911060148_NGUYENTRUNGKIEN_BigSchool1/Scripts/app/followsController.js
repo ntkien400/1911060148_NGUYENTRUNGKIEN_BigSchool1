@@ -1,11 +1,11 @@
 ﻿var FollowsController = function () {
-    var link;
+    var button;
     var init = function () {
         $(".js-toggle-follow").click(toggleFollow);
     };
     var toggleFollow = function (e) {
-        link = $(e.target);
-        if (link.hasClass("text-danger")) {
+        button = $(e.target);
+        if (button.hasClass("btn-default")) {
             createFollow();
         }
         else {
@@ -13,21 +13,21 @@
         }
     };
     var createFollow = function () {
-        $.post("/api/followings", { followeeId: link.attr("data-user-id") })
+        $.post("/api/followings", { followeeId: button.attr("data-user-id") })
             .done(done)
             .fail(fail);
     };
     var deleteFollow = function () {
         $.ajax({
-            url: "/api/followings/" + link.attr("data-user-id"),
+            url: "/api/followings/" + button.attr("data-user-id"),
             method: "DELETE"
         })
             .done(done)
             .fail(fail);
     };
     var done = function () {
-        var text = (link.text() == "Following") ? "Follow?" : "Following";
-        button.toggleClass("text-danger").toggleClass("text-info").text(text);
+        var text = (button.text() == "Unfollow") ? "Following" : "Unfollow";
+        button.toggleClass("btn-default").toggleClass("btn-danger").text(text);
     };
     var fail = function () {
         alert("Something Failed!");

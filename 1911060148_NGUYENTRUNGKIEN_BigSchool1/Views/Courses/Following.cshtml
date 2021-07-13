@@ -6,17 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<div class="row">
-        <ul>
-            @foreach (var course in Model)
-                {
-                    <li>
-                        @course.DateTime - @course.Lecturer.Name
-                    </li>
-                }
-        </ul>
-    </div>*@
-<h2>Following</h2>
+<h2>Giảng viên theo dõi</h2>
 
 <ul class="course">
     @foreach (var lecturers in Model.FollowingLecturers)

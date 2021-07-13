@@ -10,10 +10,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"aria-haspopup="true"
                aria-expanded="false">@User.Identity.GetUserName()<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="@Url.Action("Attending","Courses")">Course I'm Going</a></li>
-                <li><a href="@Url.Action("Following","Courses")">Lecture I'm Flowing</a></li>
-                <li><a href="@Url.Action("Mine","Courses")">Mine</a></li>
-
+                <li><a href="@Url.Action("Attending","Courses")">Khóa học tôi đang theo</a></li>
+                <li><a href="@Url.Action("Following","Courses")">Giảng viên tôi đang theo dõi</a></li>
+                <li><a href="@Url.Action("Mine","Courses")">Khóa học của tôi</a></li>
+                <li><a href="@Url.Action("FollowingMeList","Courses")">Danh sách người theo dõi</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>

@@ -132,6 +132,20 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
                 .ToList();
             return View(courses);
         }
-       
+        [Authorize]
+        public ActionResult FollowingMeList()
+        {
+            var userId = User.Identity.GetUserId();
+            var lecturers = _dbContext.Followings
+                .Where(a => a.FollowerId == userId)
+                .Select(a => a.Followee)
+                .ToList();
+            var viewModel = new FollowingsViewModel
+            {
+                FollowingLecturers = lecturers,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
+        }
     }
 }

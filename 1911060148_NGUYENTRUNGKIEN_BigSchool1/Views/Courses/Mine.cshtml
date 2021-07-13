@@ -7,32 +7,64 @@
 <h2>Mine</h2>
 <ul class="course">
     @foreach (var course in Model)
-            {
-                <li>
-                    <div class="date">
-                        <div class="month">
-                            @course.DateTime.ToString("MM")
-                        </div>
-                        <div class="day">
-                            @course.DateTime.ToString("dd")
-                        </div>
+    {
+        if (course.IsCanceled == false)
+        {
+            <li>
+                <div class="date">
+                    <div class="month">
+                        @course.DateTime.ToString("MM")
                     </div>
-                    <div class="details">
-                        <span class="lecturer">
-                            @course.Lecturer.Name
-                           
-                        </span>
-                        <span class="category">
-                            @course.Category.Name
-                        </span>
-                        
+                    <div class="day">
+                        @course.DateTime.ToString("dd")
                     </div>
-                    <div class="action">
-                        <a href="@Url.Action("Edit", "Courses", new { id = course.Id})">Sửa</a>
-                        <a href="#" class="js-cancel-course" data-course-id="@course.Id">Hủy</a>
+                </div>
+                <div class="details">
+                    <span class="lecturer">
+                        @course.Lecturer.Name
+
+                    </span>
+                    <span class="category">
+                        @course.Category.Name
+                    </span>
+
+                </div>
+                <div class="action">
+                    <a href="@Url.Action("Edit", "Courses", new { id = course.Id})">Sửa</a>
+                    <a href="#" class="js-cancel-course" data-course-id="@course.Id">Hủy</a>
+                </div>
+            </li>
+        }
+        if(course.IsCanceled == true)
+        {
+            <li>
+                <div class="date1">
+                    <div class="month">
+                        @course.DateTime.ToString("MM")
                     </div>
-                </li>
-            }
+                    <div class="day">
+                        @course.DateTime.ToString("dd")
+                    </div>
+                </div>
+                <div class="details1">
+                    <span class="lecturer">
+                        @course.Lecturer.Name
+
+                    </span>
+                    <span class="category1">
+                        @course.Category.Name
+                    </span>
+
+                </div>
+                <div class="action1">
+                    @*<a href="@Url.Action("Edit", "Courses", new { id = course.Id})">sửa</a>
+                    <a href="#" class="js-cancel-course" data-course-id="@course.Id">hủy</a>*@
+                    <a href="#" class="js-restore-course" data-restore-id="@course.Id">Phục hồi</a>
+                </div>
+            </li>
+        }
+    }
+
 </ul>
 @section scripts
 {
@@ -41,7 +73,7 @@
             $(".js-cancel-course").click(function (e) {
                 e.preventDefault();
                 var link = $(e.target);
-                bootbox.confirm("Bạn có muốn hủy không?",
+                bootbox.confirm("bạn có muốn hủy không?",
                     function () {
                         $.ajax({
                             url: "/api/courses/" + link.attr("data-course-id"),
@@ -53,7 +85,23 @@
                                 });
                             })
                             .fail(function () {
-                                alert("Something Failed!");
+                                alert("something failed!");
+                            });
+                    });
+            });
+        });
+        $(document).ready(function () {
+            $(".js-restore-course").click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.confirm("bạn có muốn phục hồi lại khóa học không?",
+                    function () {
+                        $.ajax({
+                            url: "/api/courses/" + link.attr("data-restore-id"),
+                            method: "POST"
+                        })
+                            .fail(function () {
+                                alert("something failed!");
                             });
                     });
             });

@@ -1,0 +1,21 @@
+﻿@model _1911060148_NGUYENTRUNGKIEN_BigSchool1.ViewModels.FollowingsViewModel
+@{
+    ViewBag.Title = "FollowingMeList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách người theo dõi tôi</h2>
+
+<ol class="course" type="1">
+    @foreach (var lecturers in Model.FollowingLecturers)
+    {
+        <li>
+            <div class="details">
+                <span class="lecturer">
+                    @lecturers.Name
+                </span>
+            </div>
+            <p>.</p>
+        </li>
+    }
+</ol>
