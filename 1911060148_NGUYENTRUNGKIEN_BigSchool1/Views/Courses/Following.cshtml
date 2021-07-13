@@ -6,21 +6,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Giảng viên theo dõi</h2>
+<h2>Giảng viên bạn đang theo dõi</h2>
 
-<ul class="course">
+<table class="course" style="width:30%">
+    <tr>
+       <th>Giảng viên</th>
+        <th>Tình trạng</th>
+    </tr>
     @foreach (var lecturers in Model.FollowingLecturers)
     {
-        <li>
-            <div class="details">
-                <span class="lecturer">
-                    @lecturers.Name
+    <tr>
+        <td class="details">
+            <span class="lecturer">
+                @lecturers.Name
+            </span>
+        </td>
+        <td>
+            @if (Model.ShowAction)
+            {
+                var user_id = @User.Identity.GetUserId();
+                ApplicationDbContext _dbcontext = new ApplicationDbContext();
+                bool isfollowing = _dbcontext.Followings
+                    .Any(a => a.FollowerId == user_id && a.FolloweeId == lecturers.Id);
+                <span>
+                    @if (!isfollowing)
+                    {
+                        <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@lecturers.Id">Theo dõi</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger btn-sm js-toggle-follow" data-user-id="@lecturers.Id">Bỏ theo dõi</button>
+                    }
                 </span>
-            </div>
-            <a href="#" class="js-toggle-follow" data-user-id="@lecturers.Followees">Unfollow</a>
-        </li>
+            }
+        </td>
+    </tr>
     }
-</ul>
+</table>
 @section scripts
 {
     <script>

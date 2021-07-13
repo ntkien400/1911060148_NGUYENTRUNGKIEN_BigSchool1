@@ -26,7 +26,7 @@
             .fail(fail);
     };
     var done = function () {
-        var text = (button.text() == "Unfollow") ? "Following" : "Unfollow";
+        var text = (button.text() == "Bỏ theo dõi") ? "Theo dõi" : "Bỏ theo dõi";
         button.toggleClass("btn-default").toggleClass("btn-danger").text(text);
     };
     var fail = function () {

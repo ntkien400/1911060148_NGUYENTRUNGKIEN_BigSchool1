@@ -25,6 +25,7 @@ textarea {
 /*Course Layout*/
 .course{
     list-style: none;
+    
 }
 .course > li{
     position: relative;
@@ -34,17 +35,17 @@ textarea {
     text-align: center;
     background-color: #6d0aa0;
     color: white;
-    width: 60px;
+    width: 100px;
     border-radius: 8px;
 }
 .course > li .details{
     position: absolute;
     top: 0px;
-    left: 70px;
+    left: 120px;
 }
 .course > li .action{
     display: normal;
-    left: 70px;
+    left: 120px;
     position: absolute;
 }
 .course > li:hover .action{
@@ -54,23 +55,26 @@ textarea {
     text-align: center;
     background-color: #6d0aa0;
     color: white;
-    width: 60px;
+    width: 100px;
     border-radius: 8px;
-   opacity:0.2;
+    opacity:0.2;
 }
 
 .course > li .details1 {
     position: absolute;
     top: 0px;
-    left: 70px;
+    left: 120px;
     opacity:0.2;
 }
 .course > li .action1 {
     display: normal;
-    left: 70px;
+    left: 120px;
     position: absolute;
 }
 
 .course > li:hover .action1 {
     display: block;
+}
+.btn-info{
+    width:70px;
 }

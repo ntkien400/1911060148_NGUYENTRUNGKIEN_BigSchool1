@@ -6,65 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Khóa học tham gia</h2>
+<h2>Khóa học bạn đang tham gia</h2>
 
-@*<ul class="course">
-    @foreach (var course in Model.UpcommingCourses)
-    {
-        <li>
-            <div class="date">
-                <div class="month">
-                    @course.DateTime.ToString("MM")
-                </div>
-                <div class="day">
-                    @course.DateTime.ToString("dd")
-                </div>
-            </div>
-            <div class="details">
-                <span class="lecturer">
-                    @course.Lecturer.Name
-                    @if (Model.ShowAction)
-                    {
-                        var user_id = @User.Identity.GetUserId();
-                        ApplicationDbContext _dbcontext = new ApplicationDbContext();
-                        bool isfollowing = _dbcontext.Followings.Any(a => a.FollowerId == user_id && a.FolloweeId == course.LecturerId);
-                        <span>
-                            @if (!isfollowing)
-                            {
-                                <a href="#" class="js-toggle-follow" data-user-id="@course.LecturerId">Follow?</a>
-                            }
-                            else
-                            {
-                                <a href="#" class="js-toggle-follow" data-user-id="@course.LecturerId">Following</a>
-                            }
-                        </span>
-                    }
-                </span>
-                <span class="category">
-                    @course.Category.Name
-                </span>
-                @if (Model.ShowAction)
-                {
-                    var User_ID = @User.Identity.GetUserId();
-                    ApplicationDbContext _dbContext = new ApplicationDbContext();
-                    bool isGoing = _dbContext.Attendances.Any(a => a.CourseId == course.Id && a.AttendeeId == User_ID);
-
-                    <span>
-                        @if (!isGoing)
-                        {
-                            <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
-                        }
-                        else
-                        {
-                            <button data-course-id="@course.Id" class="btn btn-info btn-sm js-toggle-attendance">Going</button>
-
-                        }
-                    </span>
-                }
-            </div>
-        </li>
-    }
-</ul>*@
 <table class="course" style="width:100%">
     <tr>
         <th>Ngày</th>
@@ -105,11 +48,11 @@
                         <span>
                             @if (!isGoing)
                             {
-                                <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                                <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Tham gia</button>
                             }
                             else
                             {
-                                <button data-course-id="@course.Id" class="btn btn-info btn-sm js-toggle-attendance">Going</button>
+                                <button data-course-id="@course.Id" class="btn btn-info btn-sm js-toggle-attendance">Hủy bỏ</button>
 
                             }
                         </span>

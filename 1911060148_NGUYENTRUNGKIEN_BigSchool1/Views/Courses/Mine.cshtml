@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mine</h2>
+<h2>Khóa học của tôi</h2>
 <ul class="course">
     @foreach (var course in Model)
     {
@@ -13,10 +13,10 @@
             <li>
                 <div class="date">
                     <div class="month">
-                        @course.DateTime.ToString("MM")
+                        @course.DateTime.ToString("dd/MM/yyyy")
                     </div>
                     <div class="day">
-                        @course.DateTime.ToString("dd")
+                        @course.DateTime.ToString("HH:mm")
                     </div>
                 </div>
                 <div class="details">
@@ -24,9 +24,9 @@
                         @course.Lecturer.Name
 
                     </span>
-                    <span class="category">
+                    <div class="category">
                         @course.Category.Name
-                    </span>
+                    </div>
 
                 </div>
                 <div class="action">
@@ -40,10 +40,10 @@
             <li>
                 <div class="date1">
                     <div class="month">
-                        @course.DateTime.ToString("MM")
+                        @course.DateTime.ToString("dd/MM/yyyy")
                     </div>
                     <div class="day">
-                        @course.DateTime.ToString("dd")
+                        @course.DateTime.ToString("HH:mm")
                     </div>
                 </div>
                 <div class="details1">
@@ -51,9 +51,9 @@
                         @course.Lecturer.Name
 
                     </span>
-                    <span class="category1">
+                    <div class="category1">
                         @course.Category.Name
-                    </span>
+                    </div>
 
                 </div>
                 <div class="action1">
@@ -108,3 +108,4 @@
         });
     </script>
 }
+
