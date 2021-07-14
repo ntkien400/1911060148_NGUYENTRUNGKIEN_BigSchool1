@@ -13,14 +13,15 @@
         <th>Giờ</th>
         <th>Giảng viên</th>
         <th>Môn học</th>
-        <th> </th>
+        <th>Tham gia</th>
+        <th>Theo dõi</th>
     </tr>
     @foreach (var course in Model.UpcommingCourses)
     {
         if (course.IsCanceled == false)
         {
             <tr>
-                
+
                 <td class="date">
                     @course.DateTime.ToString("dd/MM/yyyy")
                 </td>
@@ -31,11 +32,11 @@
                     <span class="lecturer">
                         @course.Lecturer.Name
                     </span>
-                    
+
                 </td>
                 <td class="category">
                     @course.Category.Name
-                    
+
                 </td>
                 <td>
                     @if (Model.ShowAction)
@@ -57,7 +58,7 @@
                         </span>
 
                     }
-                   
+
                 </td>
                 <td>
                     @if (Model.ShowAction)

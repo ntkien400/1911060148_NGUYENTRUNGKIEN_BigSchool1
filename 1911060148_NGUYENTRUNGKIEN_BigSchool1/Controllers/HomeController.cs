@@ -17,7 +17,7 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             var upcommingCourses = _dbContext.Courses
                 .Include(c => c.Lecturer)

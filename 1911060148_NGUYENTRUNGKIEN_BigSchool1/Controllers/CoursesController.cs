@@ -29,7 +29,7 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
+            [Authorize]
         public ActionResult Edit(int id)
         {
             var userId = User.Identity.GetUserId();
@@ -147,5 +147,6 @@ namespace _1911060148_NGUYENTRUNGKIEN_BigSchool1.Controllers
             };
             return View(viewModel);
         }
+       
     }
 }
