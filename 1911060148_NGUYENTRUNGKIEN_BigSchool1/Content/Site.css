@@ -78,3 +78,13 @@ textarea {
 .btn-info{
     width:70px;
 }
+.follow{
+    border: 1px solid black;
+}
+.follow th{
+    border: 1px solid black;
+    text-align: center;
+}
+.follow td{
+    text-align: center;
+}

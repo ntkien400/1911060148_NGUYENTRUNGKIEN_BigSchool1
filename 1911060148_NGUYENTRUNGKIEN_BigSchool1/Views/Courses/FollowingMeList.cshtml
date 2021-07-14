@@ -6,16 +6,20 @@
 
 <h2>Danh sách người theo dõi tôi</h2>
 
-<ol class="course" type="1">
+<table class="follow" style="width:15%">
+    <tr>
+        <th>Người theo dõi</th>
+    </tr>
     @foreach (var lecturers in Model.FollowingLecturers)
     {
-        <li>
-            <div class="details">
-                <span class="lecturer">
-                    @lecturers.Name
-                </span>
-            </div>
-            <p>.</p>
-        </li>
+        <tr>
+            <td>
+                <div class="details">
+                    <span class="lecturer">
+                        @lecturers.Name
+                    </span>
+                </div>
+            </td>
+        </tr>
     }
-</ol>
+</table>
